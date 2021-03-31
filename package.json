@@ -2,12 +2,18 @@
   "name": "utils-z",
   "version": "1.0.0",
   "description": "常用工具方法",
-  "main": "index.js",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts", //
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --config jestconfig.json",
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
-    "lint": "tslint -p tsconfig.json"
+    "lint": "tslint -p tsconfig.json",
+    "prepare": "npm run build",
+    "prepublishOnly": "npm run test && npm run lint",
+    "preversion": "npm run lint",
+    "version": "npm run format && git add -A src",
+    "postversion": "git push && git push --tags"
   },
   "keywords": [
     "helper",
@@ -16,10 +22,27 @@
   "author": "zmb",
   "license": "ISC",
   "devDependencies": {
+    "@types/jest": "^26.0.22",
+    "jest": "^26.6.3",
     "prettier": "^2.2.1",
+    "ts-jest": "^26.5.4",
     "tslint": "^6.1.3",
     "tslint-config-prettier": "^1.18.0",
     "typescript": "^4.2.3"
   },
-  "files": ["lib/**/*"]
+  "files": [
+    "lib/**/*"
+  ],
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/afaker9527/utils-z.git"
+  },
+  "bugs": {
+    "url": "https://github.com/afaker9527/utils-z/issues"
+  },
+  "homepage": "https://github.com/afaker9527/utils-z#readme"
 }
